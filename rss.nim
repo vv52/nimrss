@@ -1,8 +1,9 @@
-import std/httpclient
+import std/httpclient, xmlparser
 
 var client = newHttpClient()
 var rss_feed = "https://dateemups.com/feed/"
 try:
-  echo client.getContent(rss_feed)
+  let x = parseXml(client.getContent(rss_feed))
+  echo $x
 finally:
   client.close()
